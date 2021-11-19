@@ -1,0 +1,20 @@
+type (
+	OrderReq {
+		Id string `path:"id"`
+	}
+
+	OrderReply {
+		Id   string `json:"id"`
+		Name string `json:"name"`
+	}
+)
+
+@server(
+	jwt: Auth
+	middleware: Example
+)
+
+service order {
+	@handler getOrder
+	get /api/order/get/:id (OrderReq) returns (OrderReply)
+}
